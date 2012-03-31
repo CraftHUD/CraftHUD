@@ -1,0 +1,15 @@
+# Eclipse stuff
+/.classpath
+/.project
+/.settings
+
+# various other potential build files
+/build
+/bin
+/dist
+/manifest.mf
+
+/world
+
+# Other Libraries
+*.jar
