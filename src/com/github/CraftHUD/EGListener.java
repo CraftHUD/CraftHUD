@@ -1,5 +1,6 @@
-package com.github.CraftHUD;
+package github.CraftHUD;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -7,15 +8,12 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class EGListener implements Listener
 {
-
-	private final CraftHUD plugin;
-
 	/** Initializes the listener
 	 * 
 	 */
-	public EGListener(final CraftHUD plugin)
+	public EGListener(CraftHUD plugin)
 	{
-		this.plugin = plugin;
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 	
 	
@@ -26,7 +24,20 @@ public class EGListener implements Listener
 	public void onPlayerLogin(PlayerLoginEvent event)
 	{
 		Player player = event.getPlayer();
-		plugin.send(player, "PENIS!!!!");
+		send(player, "PENIS!!!!");
 //		GUITest samplePopup = new GUITest(player, this);
+	}
+
+
+	/**Allows the player to be sent a message in game
+	 * 
+	 */
+	public void send(Player player, String message, ChatColor color) 
+	{
+		player.sendMessage(color + message);
+	}
+	public void send(Player player, String message) 
+	{
+		send(player, message, ChatColor.AQUA);
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.CraftHUD;
+package github.CraftHUD;
 
 //import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,11 +15,10 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class GUITest
 {
 	String playerName = null;
-	private final CraftHUD plugin;
+
 	
-	public GUITest(Player player, final CraftHUD Plugin)
+	public GUITest(Player player, CraftHUD plugin)
 	{
-		this.plugin = Plugin;
 		playerName = player.getName();
 		SpoutPlayer splayer = (SpoutPlayer) player;
 		GenericPopup somePopup = new GenericPopup();

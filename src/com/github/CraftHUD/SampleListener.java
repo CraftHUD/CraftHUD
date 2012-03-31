@@ -1,4 +1,4 @@
-package com.github.CraftHUD;
+package github.CraftHUD;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
