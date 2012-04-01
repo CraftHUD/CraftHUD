@@ -1,4 +1,4 @@
-package github.CraftHUD;
+package com.github.CraftHUD;
 
 //import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

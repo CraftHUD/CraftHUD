@@ -1,9 +1,10 @@
-package github.CraftHUD;
+package com.github.CraftHUD;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 public class EGListener implements Listener
@@ -24,8 +25,15 @@ public class EGListener implements Listener
 	public void onPlayerLogin(PlayerLoginEvent event)
 	{
 		Player player = event.getPlayer();
-		send(player, "PENIS!!!!");
+		send(player, "CraftGUI is enabled!");
 //		GUITest samplePopup = new GUITest(player, this);
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event)
+	{
+		Player player = event.getPlayer();
+		player.sendMessage("this message brought to you by onPlayerJoin");
 	}
 
 
@@ -36,6 +44,7 @@ public class EGListener implements Listener
 	{
 		player.sendMessage(color + message);
 	}
+	
 	public void send(Player player, String message) 
 	{
 		send(player, message, ChatColor.AQUA);

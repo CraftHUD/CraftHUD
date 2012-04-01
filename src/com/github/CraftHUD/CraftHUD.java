@@ -4,20 +4,19 @@
  * @author Krzysztof Kotarba
  * @version 0.0.1
  */
-package github.CraftHUD;
+package com.github.CraftHUD;
 
 import java.io.File;
 import java.util.logging.Logger;
-
 import org.bukkit.plugin.java.JavaPlugin;
-
-
 
 public class CraftHUD extends JavaPlugin
 {
 	
 	Logger log = Logger.getLogger("Minecraft");
 	public static String maindirectory = "plugins" + File.separator + "CraftHUD";	
+	
+	
 	
 	/** Displays a message when the plugin is disabled
 	 * 
@@ -27,8 +26,7 @@ public class CraftHUD extends JavaPlugin
 	{
 		log.info("CraftHUD has been disabled");
 	}
-			
-	
+
 	
 	/** When the plugin is enabled, it will:
 	 *  -create a new instance 
