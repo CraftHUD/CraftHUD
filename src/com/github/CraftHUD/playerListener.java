@@ -1,6 +1,8 @@
 package com.github.CraftHUD;
 
-import com.github.CraftHUD.playerMenu;
+import com.github.CraftHUD.CraftButtons;
+import com.github.CraftHUD.buttons.exitButton;
+
 import java.util.logging.Logger;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,13 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.getspout.spoutapi.event.input.KeyPressedEvent;
+import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class playerListener implements Listener
 {
 	Logger log = Logger.getLogger("Minecraft");
-	playerMenu gui = new playerMenu();
+	CraftHUD plugin;
 	
 	
 	/** Initializes the listener
@@ -25,6 +28,7 @@ public class playerListener implements Listener
 	
 	/** On player login, a message will display informing the player of how to open their menu
 	 *
+	 * @param PlayerJoinEvent
 	 */
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlayerJoin(PlayerJoinEvent event)
@@ -37,6 +41,7 @@ public class playerListener implements Listener
 	
 	/** When the player presses the J key, it will bring up the menu
 	 * 
+	 * @param KeyPressedEvent
 	 */
 	@EventHandler
 	public void onKeyPressedEvent(KeyPressedEvent event) 
@@ -44,6 +49,26 @@ public class playerListener implements Listener
 		SpoutPlayer sPlayer = event.getPlayer();	
 		
 		if (event.getKey() == Keyboard.KEY_J) 
-			gui.DisplayMenu(sPlayer);
+		{
+			CraftButtons craftPop = new CraftButtons(sPlayer, plugin);
+			
+			sPlayer.getMainScreen().attachPopupScreen(craftPop);
+            sPlayer.getMainScreen().setDirty(true);
+		}
+	}
+	
+	/**Handels menu item selections
+	 * 
+	 * @param buttonClickEvent
+	 */
+	@EventHandler
+    public void onButtonClick(ButtonClickEvent event) 
+	{
+		SpoutPlayer sPlayer = event.getPlayer();
+		
+		if (event.getButton() instanceof exitButton) 
+		{
+            sPlayer.getMainScreen().closePopup();
+		}
 	}
 }
