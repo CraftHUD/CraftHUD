@@ -19,6 +19,7 @@ package com.github.CraftHUD;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
+
 public class CraftHUD extends JavaPlugin
 {
 	Logger log = Logger.getLogger("Minecraft");
@@ -32,7 +33,8 @@ public class CraftHUD extends JavaPlugin
 	 */
 	public void onEnable() 
 	{
-		log.info("CraftHUD has been enabled.");
+		log.info("CraftHUD has been enabled.");		
+		UserData.getInstance().loadUsers();
 		getServer().getPluginManager().registerEvents(new playerListener(this),this);
 	}
 

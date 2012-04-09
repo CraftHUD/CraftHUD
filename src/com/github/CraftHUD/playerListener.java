@@ -1,7 +1,11 @@
 package com.github.CraftHUD;
 
-import com.github.CraftHUD.CraftButtons;
-import com.github.CraftHUD.buttons.exitButton;
+import com.github.CraftHUD.menus.friendsList;
+import com.github.CraftHUD.menus.playerMenu;
+import com.github.CraftHUD.screenElements.addInputButton;
+import com.github.CraftHUD.screenElements.exitButton;
+import com.github.CraftHUD.screenElements.friendsListButton;
+
 
 import java.util.logging.Logger;
 import org.bukkit.entity.Player;
@@ -15,11 +19,11 @@ import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
+
 public class playerListener implements Listener
 {
 	Logger log = Logger.getLogger("Minecraft");
-	CraftHUD plugin;
-	
+	CraftHUD plugin;	
 	
 	/** Initializes the listener
 	 */
@@ -35,6 +39,12 @@ public class playerListener implements Listener
 	{
 		log.info("Player Joined");
 		Player player = event.getPlayer();
+		String name = player.getDisplayName();
+		
+		if (!UserData.PlayerExists(player))
+			UserData.addUser(player);
+		else
+			player.sendMessage("Welcome back " +name+ "!");
 		player.sendMessage("Press the 'J' key to access menu");
 	}
 	
@@ -50,7 +60,7 @@ public class playerListener implements Listener
 		
 		if (event.getKey() == Keyboard.KEY_J) 
 		{
-			CraftButtons craftPop = new CraftButtons(sPlayer, plugin);
+			playerMenu craftPop = new playerMenu(sPlayer, plugin);
 			
 			sPlayer.getMainScreen().attachPopupScreen(craftPop);
             sPlayer.getMainScreen().setDirty(true);
@@ -65,10 +75,20 @@ public class playerListener implements Listener
     public void onButtonClick(ButtonClickEvent event) 
 	{
 		SpoutPlayer sPlayer = event.getPlayer();
+		friendsList list = new friendsList(sPlayer, plugin);
 		
-		if (event.getButton() instanceof exitButton) 
+		
+		if (event.getButton() instanceof friendsListButton)
 		{
-            sPlayer.getMainScreen().closePopup();
+			sPlayer.getMainScreen().closePopup();
+			sPlayer.getMainScreen().attachPopupScreen(list);
+			sPlayer.getMainScreen().setDirty(true);
 		}
+		else if (event.getButton() instanceof addInputButton)
+		{
+			//Will be pressed to add a name from the text field
+		}
+		else if (event.getButton() instanceof exitButton) 
+            sPlayer.getMainScreen().closePopup();
 	}
 }
