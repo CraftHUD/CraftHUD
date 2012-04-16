@@ -16,13 +16,21 @@
  */
 package com.github.CraftHUD;
 
+import java.io.File;
 import java.util.logging.Logger;
+
+import com.github.CraftHUD.listeners.buttonListener;
+import com.github.CraftHUD.listeners.playerListener;
+
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 
 public class CraftHUD extends JavaPlugin
 {
 	Logger log = Logger.getLogger("Minecraft");
+	public static File crafthud;
+	public static String maindirectory = "plugins" + File.separator + "mcMMO";
 
 	/** When the plugin is enabled, it will:
 	 *  -create a new instance 
@@ -33,9 +41,16 @@ public class CraftHUD extends JavaPlugin
 	 */
 	public void onEnable() 
 	{
+        crafthud = this.getFile();
+        new File(maindirectory).mkdir();
+		
 		log.info("CraftHUD has been enabled.");		
+		
 		UserData.getInstance().loadUsers();
+		LoadData.extractFiles();
+		
 		getServer().getPluginManager().registerEvents(new playerListener(this),this);
+		getServer().getPluginManager().registerEvents(new buttonListener(this),this);
 	}
 
 	

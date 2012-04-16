@@ -8,7 +8,6 @@ public class userTextInput extends GenericTextField
 	public userTextInput()
 	{
 		this.setText("Friend Name...");
-		this.setCursorPosition(1);
 		this.setFieldColor(new Color(1.0F, 1.0F, 1.0F, 1.0F));
 		this.setBorderColor(new Color(0, 0, 0, 1.0F));
 		this.setMaximumCharacters(10);

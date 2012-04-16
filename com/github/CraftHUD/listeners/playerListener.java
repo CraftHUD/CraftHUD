@@ -1,13 +1,12 @@
-package com.github.CraftHUD;
-
-import com.github.CraftHUD.menus.friendsList;
-import com.github.CraftHUD.menus.playerMenu;
-import com.github.CraftHUD.screenElements.addInputButton;
-import com.github.CraftHUD.screenElements.exitButton;
-import com.github.CraftHUD.screenElements.friendsListButton;
+package com.github.CraftHUD.listeners;
 
 
 import java.util.logging.Logger;
+
+import com.github.CraftHUD.CraftHUD;
+import com.github.CraftHUD.UserData;
+import com.github.CraftHUD.menus.mainMenu;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,7 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.getspout.spoutapi.event.input.KeyPressedEvent;
-import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -60,35 +58,12 @@ public class playerListener implements Listener
 		
 		if (event.getKey() == Keyboard.KEY_J) 
 		{
-			playerMenu craftPop = new playerMenu(sPlayer, plugin);
+			mainMenu craftPop = new mainMenu(sPlayer, plugin);
 			
 			sPlayer.getMainScreen().attachPopupScreen(craftPop);
             sPlayer.getMainScreen().setDirty(true);
 		}
 	}
 	
-	/**Handels menu item selections
-	 * 
-	 * @param buttonClickEvent
-	 */
-	@EventHandler
-    public void onButtonClick(ButtonClickEvent event) 
-	{
-		SpoutPlayer sPlayer = event.getPlayer();
-		friendsList list = new friendsList(sPlayer, plugin);
-		
-		
-		if (event.getButton() instanceof friendsListButton)
-		{
-			sPlayer.getMainScreen().closePopup();
-			sPlayer.getMainScreen().attachPopupScreen(list);
-			sPlayer.getMainScreen().setDirty(true);
-		}
-		else if (event.getButton() instanceof addInputButton)
-		{
-			//Will be pressed to add a name from the text field
-		}
-		else if (event.getButton() instanceof exitButton) 
-            sPlayer.getMainScreen().closePopup();
-	}
+	
 }
