@@ -4,8 +4,8 @@ package com.github.CraftHUD.listeners;
 import java.util.logging.Logger;
 
 import com.github.CraftHUD.CraftHUD;
-import com.github.CraftHUD.UserData;
 import com.github.CraftHUD.menus.mainMenu;
+import com.github.CraftHUD.userData.UserData;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

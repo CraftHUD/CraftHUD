@@ -9,7 +9,9 @@ import org.bukkit.entity.Player;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
 
-
+/**Creates the friendslist menu
+ * 
+ */
 public class friendsList extends GenericPopup
 {
 	CraftHUD plugin;
@@ -19,6 +21,10 @@ public class friendsList extends GenericPopup
 	exitButton exit = null;
 	
 
+	/**Sets the widgets for the friends list
+	 * @param player, plugin
+	 * 
+	 */
 	public friendsList (Player player, CraftHUD plugin)
 	{	
 		String playerDisplayName = player.getDisplayName();
@@ -27,15 +33,9 @@ public class friendsList extends GenericPopup
 		playerName.setText(playerDisplayName + "'s Friends List");
 		playerName.setX(10).setY(10).setDirty(true);
 		
-		input = new userTextInput();
-		input.setX(10).setY(30);
-		
+		input = new userTextInput();	
 		exit = new exitButton();
-		exit.setX(360).setY(5).setDirty(true);
-		
 		add = new addInputButton();
-		add.setX(150).setY(30).setDirty(true);
-		
 		
 		this.attachWidgets(plugin, playerName, input, add, exit);
 	}

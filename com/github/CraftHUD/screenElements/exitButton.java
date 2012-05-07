@@ -10,6 +10,6 @@ public class exitButton extends GenericButton
 	{
 		this.setText("EXIT");
 		this.setWidth(60).setHeight(20);
-		this.setDirty(true);
+		this.setX(360).setY(5).setDirty(true);
 	}
 }

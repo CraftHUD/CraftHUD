@@ -10,6 +10,6 @@ public class friendsListButton extends GenericButton
 	{
 		this.setText("Friends List");
 		this.setWidth(80).setHeight(20);
-		this.setDirty(true);
+		this.setX(30).setY(60).setDirty(true);
 	}
 }
